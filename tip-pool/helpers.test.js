@@ -17,18 +17,18 @@ describe("helpers test (with setup and teardown)", function() {
         expect(calculateTipPercent(4, 2)).toEqual(50); 
       });
 
-    it('should append a new td element from value passed', function () {
-
+    it('should append a new td element to paymentTbody', function () {
+        expect(paymentTbody.children).toBeDefined();
     });
   
     afterEach(function() {
       // teardown logic
-      document.getElementById('billAmt').value = '';
-      document.getElementById('tipAmt').value = '';
-      paymentTbody.innerHTML = '';
-      summaryTds[0].innerHTML = '';
-      summaryTds[1].innerHTML = '';
-      summaryTds[2].innerHTML =  '';
+      billAmt.value = null;
+      tipAmt.value = null;
+      paymentTbody.innerHTML = null;
+      summaryTds[0].innerHTML = null;
+      summaryTds[1].innerHTML = null;
+      summaryTds[2].innerHTML =  null;
       
     });
   });

@@ -25,15 +25,11 @@ describe("Servers test (with setup and tear-down)", function() {
       tipAmtInput.value = null;
       billAmt = 0;
       tipAmt = 0;
-      paymentTbody.innerHTML = null;
-      summaryTds[0].innerHTML = null;
-      summaryTds[1].innerHTML = null;
-      summaryTds[2].innerHTML =  null;
       serverNameInput.value = null;
       serverTbody.innerHTML = null;
-      document.querySelector('#summaryTable tbody tr').innerHTML = null;
+      document.querySelector('#summaryTable tbody').removeChild;
       document.querySelector('#serverTable tr').removeChild;
-      document.querySelectorAll('#paymentTable tr th').innerHTML = null;
+      document.querySelector('#paymentTable tr').removeChild;
       allServers = {};
   });
 });

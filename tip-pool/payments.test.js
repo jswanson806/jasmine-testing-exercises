@@ -1,7 +1,7 @@
 describe("payments test (with setup and teardown)", function() {
 
-    document.querySelector("#billAmt").value = 4;
-    document.querySelector("#tipAmt").value = 2;
+  document.querySelector("#billAmt").value = 4;
+  document.querySelector("#tipAmt").value = 2;
 
     it('should update allPayments with payment info', function () {
 
@@ -10,10 +10,26 @@ describe("payments test (with setup and teardown)", function() {
     });
 
     it('should return object with billAmt, tipAmt, & tipPercent', function () {
-  
+
        submitPaymentInfo();
         expect(allPayments['payment1']).toEqual({"billAmt": '4', "tipAmt": '2', "tipPercent": 50});
     });
+
+    it('should append current payment info to the payment table', function () {
+  
+      submitPaymentInfo();
+      expect(document.querySelector("#paymentTable td").innerText).toEqual('$4');
+      expect(document.querySelector("#paymentTable td").nextSibling.innerText).toEqual('$2');
+      expect(document.querySelector("#paymentTable td").nextSibling.nextSibling.innerText).toEqual('50%');
+   });
+
+   it('should update the summary with a table row element containing the correct values for billAmt tipAmt and tipPercent', function () {
+  
+    submitPaymentInfo();
+    expect(document.querySelector("#summaryTable tbody tr").children[0].innerHTML).toEqual('$4');
+    expect(document.querySelector("#summaryTable tbody tr").children[1].innerHTML).toEqual('$2');
+    expect(document.querySelector("#summaryTable tbody tr").children[2].innerHTML).toEqual('50%');
+ });
     
     afterEach(function() {
       // teardown logic
@@ -21,15 +37,11 @@ describe("payments test (with setup and teardown)", function() {
       tipAmtInput.value = null;
       billAmt = 0;
       tipAmt = 0;
-      paymentTbody.innerHTML = null;
-      summaryTds[0].innerHTML = null;
-      summaryTds[1].innerHTML = null;
-      summaryTds[2].innerHTML =  null;
       serverNameInput.value = null;
       serverTbody.innerHTML = null;
-      document.querySelector('#summaryTable tbody tr').innerHTML = null;
+      document.querySelector('#summaryTable tbody').removeChild;
       document.querySelector('#serverTable tr').removeChild;
-      document.querySelectorAll('#paymentTable tr th').innerHTML = null;
+      document.querySelector('#paymentTable tr').removeChild;
       allServers = {};
     });
   });
